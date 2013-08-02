@@ -26,6 +26,8 @@ public class MainActivity extends Activity {
    public void setBestellung() throws IOException{
 	  //variable deklaration
 	   Socket serverside = null;
+       InputStream i=null;
+	   OutputStream o=null;
 	  
 	   try {
 		serverside=new Socket("localhost",5555);//serverside ist der server
@@ -48,27 +50,19 @@ public class MainActivity extends Activity {
 	}
 	//Ende try catch
 	   
-	   ObjectInputStream obi=(ObjectInputStream) serverside.getInputStream();
-	 OutputStream o= serverside.getOutputStream();
-	 Object server;
-	 try {
-		server = obi.readObject();
-	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
-		CharSequence text;
-		text = (CharSequence) e;
-		Toast toast = Toast.makeText(getApplicationContext(),text, 10);
-				toast.show();
-	}
-	//Ende Try catch
-	
+	  i= serverside.getInputStream();
+	  o= serverside.getOutputStream();
 	 
-	 server.//Essensplan= noch davor schreiben aber vorher Essensplanklasse deklarieren :)	
+	
+	
+	
+	
+	 //server.//Essensplan= noch davor schreiben aber vorher Essensplanklasse deklarieren :)	
 	 
 
 	
 	//finally
-	serverside.close();
+	
 	 
 	   
    }
