@@ -24,19 +24,13 @@ public class connect_to_Server extends AsyncTask<Object, Integer, Object>{
 	   try {
 		serverside=new Socket("localhost",5544);//serverside ist der server
 	     } catch (UnknownHostException e) {
-		CharSequence text;
-		text = (CharSequence) e;
-		Toast toast = Toast.makeText(null, text,Toast.LENGTH_LONG);
-				toast.show();
+	    	 e.printStackTrace();
 		
 		// TODO Auto-generated catch block
 		
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
-		CharSequence text;
-		text = (CharSequence) e;
-		Toast toast = Toast.makeText(null,text, Toast.LENGTH_LONG);
-				toast.show();
+		e.printStackTrace();
 		
 
 	}

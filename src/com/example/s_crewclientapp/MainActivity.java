@@ -30,7 +30,7 @@ Socket serverside = null;
 		return true;
 	}
 	
-   public void setBestellung(View view){//google: 08-03 16:17:43.513: E/AndroidRuntime(1087): Caused by: android.os.NetworkOnMainThreadException
+   public void setBestellung(View view){
 	   t= new Thread(new Runnable(){
 	   public void run(){
 //	   new connect_to_Server().connect_it();
@@ -38,21 +38,15 @@ Socket serverside = null;
    
 	   
 	   try {
-		serverside=new Socket("localhost",5544);//serverside ist der server
+		serverside=new Socket("veteran1.ez.lv",5544);//serverside ist der server
 	     } catch (UnknownHostException e) {
-		CharSequence text;
-		text = (CharSequence) e;
-		Toast toast = Toast.makeText(null, text,Toast.LENGTH_LONG);
-				toast.show();
+	    	 e.printStackTrace();
 		
 		// TODO Auto-generated catch block
 		
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
-		CharSequence text;
-		text = (CharSequence) e;
-		Toast toast = Toast.makeText(null,text, Toast.LENGTH_LONG);
-				toast.show();
+		e.printStackTrace();
 		
 
 	}
