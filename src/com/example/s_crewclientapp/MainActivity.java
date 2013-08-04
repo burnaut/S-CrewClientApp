@@ -3,13 +3,14 @@ package com.example.s_crewclientapp;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.widget.Toast;
-
+import android.view.View;
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 public class MainActivity extends Activity {
-
+Socket serverside = null;
+		   InputStream i=null;
+		   OutputStream o=null;
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,47 +24,16 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-   public void setBestellung() throws IOException{
-	  //variable deklaration
-	   Socket serverside = null;
-       InputStream i=null;
-	   OutputStream o=null;
-	  
-	   try {
-		serverside=new Socket("localhost",5555);//serverside ist der server
-	} catch (UnknownHostException e) {
-		CharSequence text;
-		text = (CharSequence) e;
-		Toast toast = Toast.makeText(getApplicationContext(),text, 10);
-				toast.show();
-		
-		// TODO Auto-generated catch block
-		
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		CharSequence text;
-		text = (CharSequence) e;
-		Toast toast = Toast.makeText(getApplicationContext(),text, 10);
-				toast.show();
-		
+	
+   public void setBestellung(View view){//google: 08-03 16:17:43.513: E/AndroidRuntime(1087): Caused by: android.os.NetworkOnMainThreadException
 
-	}
-	//Ende try catch
-	   
-	  i= serverside.getInputStream();
-	  o= serverside.getOutputStream();
-	 
-	
-	
-	
-	
-	 //server.//Essensplan= noch davor schreiben aber vorher Essensplanklasse deklarieren :)	
-	 
+	   new connect_to_Server().connect_it();
+	   }
 
-	
-	//finally
-	
-	 
+		
 	   
    }
-}
+
+  
+
+
