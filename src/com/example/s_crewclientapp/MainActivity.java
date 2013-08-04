@@ -4,12 +4,17 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
+
 import java.io.*;
 import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.HashMap;
 public class MainActivity extends Activity {
 Socket serverside = null;
 		   InputStream i=null;
 		   OutputStream o=null;
+		   Thread t=null;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +31,88 @@ Socket serverside = null;
 	}
 	
    public void setBestellung(View view){//google: 08-03 16:17:43.513: E/AndroidRuntime(1087): Caused by: android.os.NetworkOnMainThreadException
+	   t= new Thread(new Runnable(){
+	   public void run(){
+//	   new connect_to_Server().connect_it();
+	 
+   
+	   
+	   try {
+		serverside=new Socket("localhost",5544);//serverside ist der server
+	     } catch (UnknownHostException e) {
+		CharSequence text;
+		text = (CharSequence) e;
+		Toast toast = Toast.makeText(null, text,Toast.LENGTH_LONG);
+				toast.show();
+		
+		// TODO Auto-generated catch block
+		
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		CharSequence text;
+		text = (CharSequence) e;
+		Toast toast = Toast.makeText(null,text, Toast.LENGTH_LONG);
+				toast.show();
+		
 
-	   new connect_to_Server().connect_it();
+	}
+	//Ende try catch
+	   
+	  try {
+		i= serverside.getInputStream();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  try {
+		o= serverside.getOutputStream();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  HashMap<String, Number> anzahl= new HashMap<String,Number>();
+	  anzahl.put("Bratwürstchen im Brötchen",3);
+	  ObjectOutputStream oos = null;
+	try {
+		oos = new ObjectOutputStream(o);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  try {
+		oos.writeObject(anzahl);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	   }
+	   });
+	   t.start();
+   }
+	   
+	 /** try {
+		serverside.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  */
+//	  dis = new DataInputStream(i);
+//	  dis.
+	
+	
+	
+	
+	 //server.//Essensplan= noch davor schreiben aber vorher Essensplanklasse deklarieren :)	
+	 
+
+	
+	//finally
+   
 
 		
 	   
-   }
+}   
 
   
 
