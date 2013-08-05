@@ -93,18 +93,6 @@ Socket serverside = null;
 	  */
 //	  dis = new DataInputStream(i);
 //	  dis.
-	
-	
-	
-	
-	 //server.//Essensplan= noch davor schreiben aber vorher Essensplanklasse deklarieren :)	
-	 
-
-	
-	//finally
-   
-
-		
 	   
 }   
 
