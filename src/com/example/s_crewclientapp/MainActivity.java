@@ -1,5 +1,6 @@
 package com.example.s_crewclientapp;
 
+import com.example.s_crewclientapp.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -62,7 +63,7 @@ Socket serverside = null;
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	  HashMap<String, HashMap> bestellung=new HashMap<String, HashMap>;
+	  HashMap<String, HashMap<String, Number>> bestellung=new HashMap<String, HashMap<String, Number>>();
 	  HashMap<String, Number> anzahl= new HashMap<String,Number>();
 	  anzahl.put("Bratwürstchen im Brötchen",3);
 	  bestellung.put(UserID, anzahl);
