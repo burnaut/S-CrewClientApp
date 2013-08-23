@@ -15,6 +15,7 @@ Socket serverside = null;
 		   InputStream i=null;
 		   OutputStream o=null;
 		   Thread t=null;
+		   String UserID=null;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,6 @@ Socket serverside = null;
    public void setBestellung(View view){
 	   t= new Thread(new Runnable(){
 	   public void run(){
-//	   new connect_to_Server().connect_it();
-	 
-   
 	   
 	   try {
 		serverside=new Socket("veteran1.ez.lv",5544);//serverside ist der server
@@ -64,8 +62,10 @@ Socket serverside = null;
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	  HashMap<String, HashMap> bestellung=new HashMap<String, HashMap>;
 	  HashMap<String, Number> anzahl= new HashMap<String,Number>();
 	  anzahl.put("Bratwürstchen im Brötchen",3);
+	  bestellung.put(UserID, anzahl);
 	  ObjectOutputStream oos = null;
 	try {
 		oos = new ObjectOutputStream(o);
@@ -74,22 +74,24 @@ Socket serverside = null;
 		e.printStackTrace();
 	}
 	  try {
-		oos.writeObject(anzahl);
+		oos.writeObject(bestellung);
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	   
+	  
 	   }
 	   });
 	   t.start();
    }
 	   
 	 /** try {
-		serverside.close();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	*	serverside.close();
+	*} catch (IOException e) {
+	*	// TODO Auto-generated catch block
+	*	e.printStackTrace();
+	*}
 	  */
 //	  dis = new DataInputStream(i);
 //	  dis.
