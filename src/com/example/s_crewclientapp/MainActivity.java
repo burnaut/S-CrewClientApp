@@ -1,10 +1,14 @@
 package com.example.s_crewclientapp;
 
 import com.example.s_crewclientapp.R;
+import com.example.s_crewclientapp.R.layout;
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.io.*;
@@ -12,16 +16,21 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 public class MainActivity extends Activity {
-Socket serverside = null;
+     Socket serverside = null;
 		   InputStream i=null;
 		   OutputStream o=null;
 		   Thread t=null;
 		   String UserID=null;
+		   String UserBestellung=null;
+		   
+		  
+		   
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		
 	}
 
@@ -63,10 +72,16 @@ Socket serverside = null;
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	  HashMap<String, HashMap<String, Number>> bestellung=new HashMap<String, HashMap<String, Number>>();
-	  HashMap<String, Number> anzahl= new HashMap<String,Number>();
-	  anzahl.put("Bratwürstchen im Brötchen",3);
-	  bestellung.put(UserID, anzahl);
+	  EditText et= (EditText) findViewById(R.id.UsersName);
+	  UserID=et.getText().toString();
+	  EditText et2=(EditText) findViewById(R.id.bestellungstext);
+	  UserBestellung=et2.getText().toString();
+	  HashMap<String,String> behelfsmap=new HashMap<String,String>();
+	  behelfsmap.put(UserID, UserBestellung);
+//	  HashMap<String, HashMap<String, Number>> bestellung=new HashMap<String, HashMap<String, Number>>();
+//	  HashMap<String, Number> anzahl= new HashMap<String,Number>();
+//	  anzahl.put("Bratwürstchen im Brötchen",3);
+//	  bestellung.put(UserID, anzahl);
 	  ObjectOutputStream oos = null;
 	try {
 		oos = new ObjectOutputStream(o);
@@ -75,7 +90,8 @@ Socket serverside = null;
 		e.printStackTrace();
 	}
 	  try {
-		oos.writeObject(bestellung);
+//		oos.writeObject(bestellung);
+		  oos.writeObject(behelfsmap);
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -87,13 +103,13 @@ Socket serverside = null;
 	   t.start();
    }
 	   
-	 /** try {
+	/** try {
 	*	serverside.close();
 	*} catch (IOException e) {
 	*	// TODO Auto-generated catch block
 	*	e.printStackTrace();
 	*}
-	  */
+	*/
 //	  dis = new DataInputStream(i);
 //	  dis.
 	   
